@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * @author liuxiaokun
+ */
 @Data
 public class UserTest {
 
@@ -11,4 +14,5 @@ public class UserTest {
     private String username;
     private String password;
     private Date created;
+    private Long createdBy;
 }

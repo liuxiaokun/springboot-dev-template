@@ -11,6 +11,9 @@ spring:
     password: 123456
 
 mybatis:
+  configuration:
+    # 字段和实体成员的映射，支持驼峰规则
+    map-underscore-to-camel-case: true
   mapper-locations: mapper/*Mapper.xml
   type-aliases-package: com.example.quickdev.entity
 
