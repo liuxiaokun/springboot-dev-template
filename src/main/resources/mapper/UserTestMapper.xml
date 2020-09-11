@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.quickdev.mapper.UserTestMapper">
-    <!-- <resultMap> 中字段可不写，自动匹配驼峰规则-->
+    <!-- <resultMap> 中字段可不写，自动匹配驼峰规则 yaml中有配置 mybatis.configuration.map-underscore-to-camel-case: true-->
     <resultMap type="com.example.quickdev.entity.UserTest" id="userTestMap"/>
     <select id="selectAll" resultMap="userTestMap">
 		select * from T_USER_TEST
