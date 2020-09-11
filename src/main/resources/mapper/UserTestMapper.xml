@@ -2,8 +2,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.quickdev.mapper.UserTestMapper">
-    <!-- <resultMap> 中字段可不写，自动匹配驼峰规则 yaml中有配置 mybatis.configuration.map-underscore-to-camel-case: true-->
+    <!-- 所有SELECT语句将会被缓存, 所有INSERT、UPDATE、DELETE 语句会刷新缓存。 -->
+    <!-- eviction (LRU、FIFO、SOFT、WEAK) 默认LRU-->
+    <!-- flushInterval 毫秒的时间段 默认情况不设置，即没有刷新 缓存仅仅在调用语句时刷新。 -->
+    <!-- size 要记住缓存的对象数目和运行环境的可用内存资源数目。默认值是 1024 -->
+    <!-- readOnly 只读的缓存会给所有调用者返回缓存对象的相同实例，因此这些对象不能被修改，这提供了很重要的性能优势
+        读写的缓存会通过序列化（实现Serializable接口）返回缓存对象的拷贝，这种方式会慢些，但是安全。 因此默认是 false. -->
+    <cache eviction="LRU" flushInterval="60000" size="1024" readOnly="false"/>
+    <!-- <resultMap> 中字段可不写，自动匹配驼峰规则 yaml中有配置
+        mybatis.configuration.map-underscore-to-camel-case: true -->
     <resultMap type="com.example.quickdev.entity.UserTest" id="userTestMap"/>
+
     <select id="selectAll" resultMap="userTestMap">
 		select * from T_USER_TEST
 	</select>
