@@ -17,4 +17,5 @@ public class UserTest implements Serializable {
     private String password;
     private Date created;
     private Long createdBy;
+    private Date date;
 }
