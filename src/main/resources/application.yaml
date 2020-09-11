@@ -17,5 +17,9 @@ mybatis:
   mapper-locations: mapper/*Mapper.xml
   type-aliases-package: com.example.quickdev.entity
 
+logging:
+  level:
+    com.example.quickdev.mapper: debug
+
 
 
