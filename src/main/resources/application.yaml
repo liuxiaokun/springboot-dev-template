@@ -1,0 +1,18 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: quick-dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://hadoop001:3306/iot_platform
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: mapper/*Mapper.xml
+  type-aliases-package: com.example.quickdev.entity
+
+
+
