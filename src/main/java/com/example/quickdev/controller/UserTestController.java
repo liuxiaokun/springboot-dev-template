@@ -2,10 +2,12 @@ package com.example.quickdev.controller;
 
 import com.example.quickdev.base.RL;
 import com.example.quickdev.base.RO;
+import com.example.quickdev.controller.controller.BaseController;
 import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.service.UserTestService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user/test")
-public class UserTestController {
+public class UserTestController extends BaseController<UserTestDTO> {
 
     private final UserTestService userTestService;
 
@@ -37,11 +39,8 @@ public class UserTestController {
     }
 
     @PostMapping("")
-    public RO add(@RequestBody UserTestDTO dto) {
-        dto.setCreateDate(new Date());
-        dto.setCreateBy(520L);
-        dto.setModifyBy(520L);
-        dto.setStatus(1);
+    public RO add(@RequestBody UserTestDTO dto, HttpServletRequest request) {
+        fillDTO(dto, request);
         boolean result = userTestService.save(dto);
         return result ? RO.success() : RO.fail();
     }

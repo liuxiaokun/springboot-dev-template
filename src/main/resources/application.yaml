@@ -25,5 +25,8 @@ logging:
   level:
     com.example.quickdev.mapper: debug
 
+jwt:
+  signKey: signKey
+
 
 
