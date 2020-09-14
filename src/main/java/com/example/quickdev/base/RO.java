@@ -26,4 +26,11 @@ public class RO<T> extends R {
         ro.setMessage(RCodeEnum.FAIL.getMessage());
         return ro;
     }
+
+    public static RO fail(String message) {
+        RO ro = new RO();
+        ro.setCode(RCodeEnum.FAIL.getCode());
+        ro.setMessage(message);
+        return ro;
+    }
 }
