@@ -6,6 +6,7 @@ import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.service.UserTestService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,8 +37,12 @@ public class UserTestController {
     }
 
     @PostMapping("")
-    public RO add(@RequestBody List<UserTestDTO> dtos) {
-        boolean result = userTestService.saveAll(dtos);
+    public RO add(@RequestBody UserTestDTO dto) {
+        dto.setCreateDate(new Date());
+        dto.setCreateBy(520L);
+        dto.setModifyBy(520L);
+        dto.setStatus(1);
+        boolean result = userTestService.save(dto);
         return result ? RO.success() : RO.fail();
     }
 }

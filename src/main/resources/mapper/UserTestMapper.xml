@@ -12,13 +12,4 @@
     <!-- <resultMap> 中字段可不写，自动匹配驼峰规则 yaml中有配置
         mybatis.configuration.map-underscore-to-camel-case: true -->
     <resultMap type="com.example.quickdev.entity.UserTest" id="userTestMap"/>
-
-    <select id="selectAll" resultMap="userTestMap">
-		select * from T_USER_TEST
-	</select>
-
-    <select id="selectById" resultMap="userTestMap" parameterType="Long">
-		select * from T_USER_TEST where id = #{id}
-	</select>
-
 </mapper>

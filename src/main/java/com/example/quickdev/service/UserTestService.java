@@ -3,6 +3,7 @@ package com.example.quickdev.service;
 import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.entity.UserTest;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -23,7 +24,15 @@ public interface UserTestService {
      * @param id id
      * @return UserTestDTO
      */
-    UserTestDTO findById(Long id);
+    UserTestDTO findById(Serializable id);
+
+    /**
+     * 保存一条
+     *
+     * @param dto dto
+     * @return boolean
+     */
+    boolean save(UserTestDTO dto);
 
     /**
      * 保存多条
