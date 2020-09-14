@@ -16,4 +16,9 @@
     <select id="selectAll" resultMap="userTestMap">
 		select * from T_USER_TEST
 	</select>
+
+    <select id="selectById" resultMap="userTestMap" parameterType="Long">
+		select * from T_USER_TEST where id = #{id}
+	</select>
+
 </mapper>

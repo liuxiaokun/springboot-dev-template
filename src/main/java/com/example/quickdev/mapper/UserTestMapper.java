@@ -9,4 +9,13 @@ import java.util.List;
 public interface UserTestMapper {
 
     List<UserTest> selectAll();
+
+    /**
+     * 根据id查询一条数据
+     * @param id id
+     * @return UserTest
+     */
+    UserTest selectById(Long id);
+
+    int insertAll(List<UserTest> data);
 }

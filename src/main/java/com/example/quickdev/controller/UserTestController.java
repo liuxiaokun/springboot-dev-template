@@ -1,14 +1,18 @@
 package com.example.quickdev.controller;
 
 import com.example.quickdev.base.RL;
-import com.example.quickdev.entity.UserTest;
+import com.example.quickdev.base.RO;
+import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.service.UserTestService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author liuxiaokun
+ * @version 1.0.0
+ * @date 2020/9/14 10:12
+ */
 @RestController
 @RequestMapping("/user/test")
 public class UserTestController {
@@ -19,10 +23,21 @@ public class UserTestController {
         this.userTestService = userTestService;
     }
 
-    @GetMapping("find/all")
-    public RL<UserTest> findAll() {
-        List<UserTest> list = userTestService.findAll();
-
+    @GetMapping("")
+    public RL<UserTestDTO> findAll() {
+        List<UserTestDTO> list = userTestService.findAll();
         return RL.success(list);
+    }
+
+    @GetMapping("/{id}")
+    public RO<UserTestDTO> findById(@PathVariable Long id) {
+        UserTestDTO dto = userTestService.findById(id);
+        return RO.success(dto);
+    }
+
+    @PostMapping("")
+    public RO add(@RequestBody List<UserTestDTO> dtos) {
+        boolean result = userTestService.saveAll(dtos);
+        return result ? RO.success() : RO.fail();
     }
 }
