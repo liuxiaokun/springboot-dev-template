@@ -6,7 +6,7 @@ spring:
     name: quick-dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://hadoop001:3306/iot_platform
+    url: jdbc:mysql://hadoop001:3306/iot_platform?serverTimezone=Asia/Shanghai&useUnicode=true
     username: root
     password: 123456
   redis:

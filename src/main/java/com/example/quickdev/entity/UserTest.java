@@ -1,5 +1,6 @@
 package com.example.quickdev.entity;
 
+import com.example.quickdev.entity.base.BaseEntity;
 import lombok.Data;
 
 import javax.naming.directory.SearchResult;
@@ -10,12 +11,8 @@ import java.util.Date;
  * @author liuxiaokun
  */
 @Data
-public class UserTest implements Serializable {
+public class UserTest extends BaseEntity {
 
-    private Long id;
     private String username;
     private String password;
-    private Date created;
-    private Long createdBy;
-    private Date date;
 }

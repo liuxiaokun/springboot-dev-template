@@ -1,5 +1,6 @@
 package com.example.quickdev.controller;
 
+import com.example.quickdev.base.RL;
 import com.example.quickdev.entity.UserTest;
 import com.example.quickdev.service.UserTestService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,9 @@ public class UserTestController {
     }
 
     @GetMapping("find/all")
-    public List<UserTest> findAll() {
-        return userTestService.findAll();
+    public RL<UserTest> findAll() {
+        List<UserTest> list = userTestService.findAll();
+
+        return RL.success(list);
     }
 }

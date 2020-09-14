@@ -26,7 +26,7 @@ public class RedisController {
     @GetMapping("test")
     public String test() {
         UserTest userTest = new UserTest();
-        userTest.setDate(new Date());
+        userTest.setCreateDate(new Date());
 
         redisTemplate.opsForValue().set("test-111", "test-111-value");
         redisTemplate.opsForValue().set("test-111-entity", userTest);
