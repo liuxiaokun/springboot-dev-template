@@ -6,4 +6,4 @@ springboot快速开发框架
 * Restful api
 * Redis
 * MybatisPlus
-* PagerHelper
+* PageHelper
