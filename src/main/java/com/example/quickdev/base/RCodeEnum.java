@@ -17,7 +17,15 @@ public enum RCodeEnum {
     /**
      * 操作失败
      */
-    FAIL(-1, "操作失败");
+    FAIL(-1, "操作失败"),
+    /**
+     * 服务器内部错误
+     */
+    CLIENT_ERROR(100400, "客户端错误"),
+    /**
+     * 服务器内部错误
+     */
+    SERVER_ERROR(100500, "服务器内部错误");
 
     private Integer code;
     private String message;

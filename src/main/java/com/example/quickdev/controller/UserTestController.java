@@ -7,10 +7,11 @@ import com.example.quickdev.controller.controller.BaseController;
 import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.service.UserTestService;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
  * @version 1.0.0
  * @date 2020/9/14 10:12
  */
+@Slf4j
 @RestController
 @RequestMapping("/user/test")
 public class UserTestController extends BaseController<UserTestDTO> {
@@ -28,7 +30,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         this.userTestService = userTestService;
     }
 
-    @GetMapping("")
+    @GetMapping()
     public RL<UserTestDTO> findAll() {
         List<UserTestDTO> list = userTestService.findAll();
         return RL.success(list);
@@ -47,10 +49,23 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return RO.success(dto);
     }
 
-    @PostMapping("")
-    public RO add(@RequestBody UserTestDTO dto, HttpServletRequest request) {
+    @PostMapping
+    public RO create(@RequestBody @Validated UserTestDTO dto, HttpServletRequest request) {
         fillDTO(dto, request);
         boolean result = userTestService.save(dto);
+        return result ? RO.success() : RO.fail();
+    }
+
+    @PutMapping
+    public RO update(@RequestBody UserTestDTO dto, HttpServletRequest request) {
+        fillDTO(dto, request);
+        boolean result = userTestService.updateById(dto);
+        return result ? RO.success() : RO.fail();
+    }
+
+    @DeleteMapping("/{id}")
+    public RO delete(@PathVariable Long id) {
+        boolean result = userTestService.deleteById(id);
         return result ? RO.success() : RO.fail();
     }
 }

@@ -14,6 +14,7 @@ public class RO<T> extends R {
 
     public static <T> RO success(T t) {
         RO ro = new RO();
+        ro.setSuccess(true);
         ro.setCode(RCodeEnum.SUCCESS.getCode());
         ro.setMessage(RCodeEnum.SUCCESS.getMessage());
         ro.setData(t);
@@ -22,6 +23,7 @@ public class RO<T> extends R {
 
     public static RO fail() {
         RO ro = new RO();
+        ro.setSuccess(false);
         ro.setCode(RCodeEnum.FAIL.getCode());
         ro.setMessage(RCodeEnum.FAIL.getMessage());
         return ro;
@@ -29,7 +31,16 @@ public class RO<T> extends R {
 
     public static RO fail(String message) {
         RO ro = new RO();
+        ro.setSuccess(false);
         ro.setCode(RCodeEnum.FAIL.getCode());
+        ro.setMessage(message);
+        return ro;
+    }
+
+    public static RO paramsCheckFail(String message) {
+        RO ro = new RO();
+        ro.setSuccess(false);
+        ro.setCode(RCodeEnum.CLIENT_ERROR.getCode());
         ro.setMessage(message);
         return ro;
     }

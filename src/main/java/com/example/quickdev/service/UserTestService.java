@@ -46,10 +46,20 @@ public interface UserTestService {
     boolean save(UserTestDTO dto);
 
     /**
+     * 全量修改
+     *
+     * @param dto dto
+     * @return boolean
+     */
+    boolean updateById(UserTestDTO dto);
+
+    /**
      * 保存多条
      *
      * @param dtos dto
      * @return boolean
      */
     boolean saveAll(List<UserTestDTO> dtos);
+
+    boolean deleteById(Serializable id);
 }

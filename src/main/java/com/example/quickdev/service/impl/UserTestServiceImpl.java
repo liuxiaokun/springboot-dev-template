@@ -70,6 +70,14 @@ public class UserTestServiceImpl implements UserTestService {
     }
 
     @Override
+    public boolean updateById(UserTestDTO dto) {
+        UserTest userTest = new UserTest();
+        BeanUtils.copyProperties(dto, userTest);
+        int rows = userTestMapper.updateById(userTest);
+        return rows == 1;
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean saveAll(List<UserTestDTO> dtos) {
 
@@ -82,5 +90,11 @@ public class UserTestServiceImpl implements UserTestService {
             }
         });
         return true;
+    }
+
+    @Override
+    public boolean deleteById(Serializable id) {
+        int rows = userTestMapper.deleteById(id);
+        return rows == 1;
     }
 }

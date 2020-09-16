@@ -16,6 +16,7 @@ public class RL<T> extends RO {
 
     public static <T> RL success(List<T> list) {
         RL rl = new RL();
+        rl.setSuccess(true);
         rl.setCode(RCodeEnum.SUCCESS.getCode());
         rl.setMessage(RCodeEnum.SUCCESS.getMessage());
         rl.setData(list);
