@@ -6,6 +6,8 @@ import com.example.quickdev.entity.UserTest;
 import com.example.quickdev.exception.BizException;
 import com.example.quickdev.mapper.UserTestMapper;
 import com.example.quickdev.service.UserTestService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,18 @@ public class UserTestServiceImpl implements UserTestService {
             BeanUtils.copyProperties(userTest, dto);
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<UserTest> userTests = userTestMapper.selectList(new QueryWrapper<>());
+
+        return new PageInfo<>(userTests.stream().map(userTest -> {
+            UserTestDTO dto = new UserTestDTO();
+            BeanUtils.copyProperties(userTest, dto);
+            return dto;
+        }).collect(Collectors.toList()));
     }
 
     @Override

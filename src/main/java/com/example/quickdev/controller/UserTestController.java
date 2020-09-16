@@ -2,9 +2,11 @@ package com.example.quickdev.controller;
 
 import com.example.quickdev.base.RL;
 import com.example.quickdev.base.RO;
+import com.example.quickdev.base.RP;
 import com.example.quickdev.controller.controller.BaseController;
 import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.service.UserTestService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,13 @@ public class UserTestController extends BaseController<UserTestDTO> {
     public RL<UserTestDTO> findAll() {
         List<UserTestDTO> list = userTestService.findAll();
         return RL.success(list);
+    }
+
+    @GetMapping("/page")
+    public RP<UserTestDTO> findByPage(@RequestParam(defaultValue = "1") int p,
+                                      @RequestParam(defaultValue = "10") int s) {
+        PageInfo<UserTestDTO> pageInfo = userTestService.findByPage(p, s);
+        return RP.success(pageInfo);
     }
 
     @GetMapping("/{id}")
