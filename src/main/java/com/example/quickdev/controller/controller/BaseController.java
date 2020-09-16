@@ -29,13 +29,14 @@ public class BaseController<T extends BaseDTO> {
     }
 
     protected Long getUserId(HttpServletRequest request) {
-        String jwt = request.getHeader("Authorization");
+        /*String jwt = request.getHeader("Authorization");
 
         Claims claims = Jwts.parser()
                 .setSigningKey(signKey.getBytes())
                 .parseClaimsJws(jwt.replace("Bearer ", ""))
                 .getBody();
-        return Long.parseLong(claims.getSubject());
+        return Long.parseLong(claims.getSubject());*/
+        return 1L;
     }
 
     protected String getIp(HttpServletRequest request) {
