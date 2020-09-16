@@ -21,11 +21,13 @@ public interface UserTestService {
 
     /**
      * 分页查询列表
-     * @param pageNum 第几页
+     *
+     * @param pageNum  第几页
      * @param pageSize 一页几条
+     * @param orderBy 排序，例如 "id desc, name asc"
      * @return PageInfo<UserTestDTO>
      */
-    PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize);
+    PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize, String orderBy);
 
     /**
      * 根据ID查询

@@ -41,8 +41,9 @@ public class UserTestServiceImpl implements UserTestService {
     }
 
     @Override
-    public PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+    public PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize, String orderBy) {
+        //orderBy 写字段名而不是成员名，多个逗号分隔，例如 "id desc,name asc"
+        PageHelper.startPage(pageNum, pageSize, orderBy);
         List<UserTest> userTests = userTestMapper.selectList(new QueryWrapper<>());
 
         return new PageInfo<>(userTests.stream().map(userTest -> {

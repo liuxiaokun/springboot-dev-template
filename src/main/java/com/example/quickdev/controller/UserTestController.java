@@ -37,7 +37,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
     @GetMapping("/page")
     public RP<UserTestDTO> findByPage(@RequestParam(defaultValue = "1") int p,
                                       @RequestParam(defaultValue = "10") int s) {
-        PageInfo<UserTestDTO> pageInfo = userTestService.findByPage(p, s);
+        PageInfo<UserTestDTO> pageInfo = userTestService.findByPage(p, s, "password desc,id desc");
         return RP.success(pageInfo);
     }
 
