@@ -79,16 +79,15 @@ public class UserTestServiceImpl implements UserTestService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean saveAll(List<UserTestDTO> dtos) {
-
-        dtos.forEach(tem -> {
+    public boolean saveAll(List<UserTestDTO> dtos) throws BizException {
+        for (UserTestDTO tem : dtos) {
             UserTest userTest = new UserTest();
             BeanUtils.copyProperties(tem, userTest);
             int rows = userTestMapper.insert(userTest);
             if (rows != 1) {
                 throw new BizException("Batch insert failed， Rollback");
             }
-        });
+        }
         return true;
     }
 

@@ -2,6 +2,7 @@ package com.example.quickdev.service;
 
 import com.example.quickdev.dto.UserTestDTO;
 import com.example.quickdev.entity.UserTest;
+import com.example.quickdev.exception.BizException;
 import com.github.pagehelper.PageInfo;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ public interface UserTestService {
      *
      * @param pageNum  第几页
      * @param pageSize 一页几条
-     * @param orderBy 排序，例如 "id desc, name asc"
+     * @param orderBy  排序，例如 "id desc, name asc"
      * @return PageInfo<UserTestDTO>
      */
     PageInfo<UserTestDTO> findByPage(int pageNum, int pageSize, String orderBy);
@@ -59,7 +60,7 @@ public interface UserTestService {
      * @param dtos dto
      * @return boolean
      */
-    boolean saveAll(List<UserTestDTO> dtos);
+    boolean saveAll(List<UserTestDTO> dtos) throws BizException;
 
     boolean deleteById(Serializable id);
 }
