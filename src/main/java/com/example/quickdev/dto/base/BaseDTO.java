@@ -1,6 +1,8 @@
 package com.example.quickdev.dto.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,11 +20,13 @@ public class BaseDTO implements Serializable {
     /**
      * 主键ID
      */
+    @JsonSerialize(using=ToStringSerializer.class)
     private Long id;
 
     /**
      * 创建人ID
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long createBy;
 
     /**
@@ -34,6 +38,7 @@ public class BaseDTO implements Serializable {
     /**
      * 最后修改人ID
      */
+    @JsonSerialize(using=ToStringSerializer.class)
     private Long modifyBy;
 
     /**
