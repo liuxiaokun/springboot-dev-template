@@ -21,9 +21,7 @@ public class BaseController<T extends BaseDTO> {
     private String signKey;
 
     protected void fillCreateDTO(T t, HttpServletRequest request) {
-        Long userId = getUserId(request);
-        t.setCreateBy(userId);
-        t.setModifyBy(userId);
+        t.setCreateBy(getUserId(request));
     }
 
     protected void fillUpdateDTO(T t, HttpServletRequest request) {

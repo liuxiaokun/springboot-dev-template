@@ -30,6 +30,7 @@ public class BaseEntity implements Serializable {
 
     /**
      * 创建日期
+     * 此字段只读，请不要写入数据。
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
@@ -41,6 +42,7 @@ public class BaseEntity implements Serializable {
 
     /**
      * 最后修改日期
+     * 此字段只读，请不要写入数据。
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifyDate;

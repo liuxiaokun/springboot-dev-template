@@ -56,9 +56,11 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return result ? RO.success() : RO.fail();
     }
 
-    @PutMapping
-    public RO update(@RequestBody UserTestDTO dto, HttpServletRequest request) {
+    @PutMapping("/{id}")
+    public RO update(@RequestBody UserTestDTO dto, @PathVariable Long id,
+                     HttpServletRequest request) {
         fillUpdateDTO(dto, request);
+        dto.setId(id);
         boolean result = userTestService.updateById(dto);
         return result ? RO.success() : RO.fail();
     }
