@@ -45,5 +45,5 @@ public class BaseDTO implements Serializable {
     /**
      * 数据状态
      */
-    private Integer status;
+    private Byte status;
 }

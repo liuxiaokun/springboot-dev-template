@@ -20,12 +20,14 @@ public class BaseController<T extends BaseDTO> {
     @Value("${jwt.signKey}")
     private String signKey;
 
-    protected void fillDTO(T t, HttpServletRequest request) {
+    protected void fillCreateDTO(T t, HttpServletRequest request) {
         Long userId = getUserId(request);
         t.setCreateBy(userId);
-        t.setCreateDate(new Date());
         t.setModifyBy(userId);
-        t.setStatus(1);
+    }
+
+    protected void fillUpdateDTO(T t, HttpServletRequest request) {
+        t.setModifyBy(getUserId(request));
     }
 
     protected Long getUserId(HttpServletRequest request) {

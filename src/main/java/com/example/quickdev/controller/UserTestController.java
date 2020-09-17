@@ -51,14 +51,14 @@ public class UserTestController extends BaseController<UserTestDTO> {
 
     @PostMapping
     public RO create(@RequestBody @Validated UserTestDTO dto, HttpServletRequest request) {
-        fillDTO(dto, request);
+        fillCreateDTO(dto, request);
         boolean result = userTestService.save(dto);
         return result ? RO.success() : RO.fail();
     }
 
     @PutMapping
     public RO update(@RequestBody UserTestDTO dto, HttpServletRequest request) {
-        fillDTO(dto, request);
+        fillUpdateDTO(dto, request);
         boolean result = userTestService.updateById(dto);
         return result ? RO.success() : RO.fail();
     }

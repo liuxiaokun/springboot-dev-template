@@ -43,10 +43,10 @@ public class BaseEntity implements Serializable {
      * 最后修改日期
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp modifyDate;
+    private Date modifyDate;
 
     /**
      * 数据状态
      */
-    private Integer status;
+    private Byte status;
 }
