@@ -43,7 +43,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return RP.success(pageInfo);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id:/d+}")
     public RO<UserTestDTO> findById(@PathVariable Long id) {
         UserTestDTO dto = userTestService.findById(id);
         return RO.success(dto);
@@ -56,7 +56,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return result ? RO.success() : RO.fail();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id:/d+}")
     public RO update(@RequestBody UserTestDTO dto, @PathVariable Long id,
                      HttpServletRequest request) {
         fillUpdateDTO(dto, request);
@@ -65,7 +65,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return result ? RO.success() : RO.fail();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id:/d+}")
     public RO delete(@PathVariable Long id) {
         boolean result = userTestService.deleteById(id);
         return result ? RO.success() : RO.fail();
