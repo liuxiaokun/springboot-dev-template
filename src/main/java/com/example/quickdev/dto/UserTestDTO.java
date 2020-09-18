@@ -3,6 +3,7 @@ package com.example.quickdev.dto;
 import com.example.quickdev.dto.base.BaseDTO;
 import com.example.quickdev.enums.GenderEnum;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;

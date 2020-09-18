@@ -48,7 +48,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
     @GetMapping("/{id:\\d+}")
     public RO<UserTestDTO> findById(@PathVariable Long id) throws BizException {
         Optional<UserTestDTO> dto = userTestService.findById(id);
-        return RO.success(dto.orElseThrow(() ->new BizException("不存在的数据")));
+        return RO.success(dto.orElseThrow(() -> new BizException("不存在的数据")));
 
     }
 
@@ -56,6 +56,14 @@ public class UserTestController extends BaseController<UserTestDTO> {
     public RO create(@RequestBody @Validated UserTestDTO dto, HttpServletRequest request) {
         fillCreateDTO(dto, request);
         boolean result = userTestService.save(dto);
+        return result ? RO.success() : RO.fail();
+    }
+
+    @PostMapping("/batch")
+    public RO batchCreate(@RequestBody List<UserTestDTO> dtos,
+                          HttpServletRequest request) throws BizException {
+        dtos.stream().forEach(tem -> tem.setCreateBy(this.getUserId(request)));
+        boolean result = userTestService.saveAll(dtos);
         return result ? RO.success() : RO.fail();
     }
 

@@ -2,16 +2,12 @@ package com.example.quickdev.exception;
 
 import com.example.quickdev.base.RO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.constraints.Size;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +17,7 @@ import java.util.stream.Collectors;
  */
 @ControllerAdvice
 @Slf4j
-public class MyExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
