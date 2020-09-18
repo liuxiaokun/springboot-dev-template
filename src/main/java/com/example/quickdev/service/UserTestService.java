@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author liuxiaokun
@@ -36,7 +37,7 @@ public interface UserTestService {
      * @param id id
      * @return UserTestDTO
      */
-    UserTestDTO findById(Serializable id);
+    Optional<UserTestDTO> findById(Serializable id);
 
     /**
      * 保存一条

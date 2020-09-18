@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -54,11 +55,15 @@ public class UserTestServiceImpl implements UserTestService {
     }
 
     @Override
-    public UserTestDTO findById(Serializable id) {
+    public Optional<UserTestDTO> findById(Serializable id) {
         UserTest userTest = userTestMapper.selectById(id);
+
+        if (null == userTest) {
+            return Optional.empty();
+        }
         UserTestDTO dto = new UserTestDTO();
         BeanUtils.copyProperties(userTest, dto);
-        return dto;
+        return Optional.of(dto);
     }
 
     @Override

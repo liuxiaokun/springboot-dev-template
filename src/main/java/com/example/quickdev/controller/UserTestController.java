@@ -5,6 +5,7 @@ import com.example.quickdev.base.RO;
 import com.example.quickdev.base.RP;
 import com.example.quickdev.controller.controller.BaseController;
 import com.example.quickdev.dto.UserTestDTO;
+import com.example.quickdev.exception.BizException;
 import com.example.quickdev.service.UserTestService;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author liuxiaokun
@@ -43,10 +45,11 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return RP.success(pageInfo);
     }
 
-    @GetMapping("/{id:/d+}")
-    public RO<UserTestDTO> findById(@PathVariable Long id) {
-        UserTestDTO dto = userTestService.findById(id);
-        return RO.success(dto);
+    @GetMapping("/{id:\\d+}")
+    public RO<UserTestDTO> findById(@PathVariable Long id) throws BizException {
+        Optional<UserTestDTO> dto = userTestService.findById(id);
+        return RO.success(dto.orElseThrow(() ->new BizException("不存在的数据")));
+
     }
 
     @PostMapping
@@ -56,7 +59,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return result ? RO.success() : RO.fail();
     }
 
-    @PutMapping("/{id:/d+}")
+    @PutMapping("/{id:\\d+}")
     public RO update(@RequestBody UserTestDTO dto, @PathVariable Long id,
                      HttpServletRequest request) {
         fillUpdateDTO(dto, request);
@@ -65,7 +68,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
         return result ? RO.success() : RO.fail();
     }
 
-    @DeleteMapping("/{id:/d+}")
+    @DeleteMapping("/{id:\\d+}")
     public RO delete(@PathVariable Long id) {
         boolean result = userTestService.deleteById(id);
         return result ? RO.success() : RO.fail();
