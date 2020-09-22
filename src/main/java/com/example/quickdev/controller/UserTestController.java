@@ -47,6 +47,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
 
     @GetMapping("/{id:\\d+}")
     public RO<UserTestDTO> findById(@PathVariable Long id) throws BizException {
+        log.info("find by id:{}", id);
         Optional<UserTestDTO> dto = userTestService.findById(id);
         return RO.success(dto.orElseThrow(() -> new BizException("不存在的数据")));
 
