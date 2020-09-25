@@ -34,6 +34,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
 
     @GetMapping()
     public RL<UserTestDTO> findAll() {
+        log.info("find all");
         List<UserTestDTO> list = userTestService.findAll();
         return RL.success(list);
     }
@@ -41,6 +42,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
     @GetMapping("/page")
     public RP<UserTestDTO> findByPage(@RequestParam(defaultValue = "1") int p,
                                       @RequestParam(defaultValue = "10") int s) {
+        log.info("list by page, pageNumber: {}, pageSize:{}", p, s);
         PageInfo<UserTestDTO> pageInfo = userTestService.findByPage(p, s, "password desc,id desc");
         return RP.success(pageInfo);
     }
@@ -55,6 +57,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
 
     @PostMapping
     public RO create(@RequestBody @Validated UserTestDTO dto, HttpServletRequest request) {
+        log.info("create:{}", dto);
         fillCreateDTO(dto, request);
         boolean result = userTestService.save(dto);
         return result ? RO.success() : RO.fail();
@@ -63,6 +66,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
     @PostMapping("/batch")
     public RO batchCreate(@RequestBody List<UserTestDTO> dtos,
                           HttpServletRequest request) throws BizException {
+        log.info("batch create:{}", dtos);
         dtos.stream().forEach(tem -> tem.setCreateBy(this.getUserId(request)));
         boolean result = userTestService.saveAll(dtos);
         return result ? RO.success() : RO.fail();
@@ -71,6 +75,7 @@ public class UserTestController extends BaseController<UserTestDTO> {
     @PutMapping("/{id:\\d+}")
     public RO update(@RequestBody UserTestDTO dto, @PathVariable Long id,
                      HttpServletRequest request) {
+        log.info("update:{}", dto);
         fillUpdateDTO(dto, request);
         dto.setId(id);
         boolean result = userTestService.updateById(dto);
@@ -78,7 +83,8 @@ public class UserTestController extends BaseController<UserTestDTO> {
     }
 
     @DeleteMapping("/{id:\\d+}")
-    public RO delete(@PathVariable Long id) {
+    public RO deleteById(@PathVariable Long id) {
+        log.info("delete by id:{}", id);
         boolean result = userTestService.deleteById(id);
         return result ? RO.success() : RO.fail();
     }
