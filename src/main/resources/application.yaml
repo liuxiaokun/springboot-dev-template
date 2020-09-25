@@ -30,7 +30,10 @@ logging:
     com.example.quickdev.mapper: debug
 
 jwt:
-  signKey: signKey
+  secretKey: secretKey
+  subject: sub
+  expire: 3600
+
 
 
 
