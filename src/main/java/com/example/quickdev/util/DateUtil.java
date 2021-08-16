@@ -1,8 +1,8 @@
 package com.example.quickdev.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author liuxiaokun
@@ -12,22 +12,24 @@ import java.util.Date;
 public class DateUtil {
 
     public static String getCurrentDate() {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(new Date());
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return now.format(formatter);
     }
 
-    public static String getDate(Date date) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(date);
+    public static String getDate(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return localDate.format(formatter);
     }
 
-    public static String getDateTime(Date date) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        return format.format(date);
+    public static String getDateTime(LocalDateTime localDateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return localDateTime.format(formatter);
     }
 
     public static String getCurrentDateTime() {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return format.format(new Date());
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return now.format(formatter);
     }
 }
