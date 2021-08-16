@@ -32,4 +32,9 @@ public class DateUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
+
+    public static LocalDate getLocalDate(String localDateString) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(localDateString, fmt);
+    }
 }
