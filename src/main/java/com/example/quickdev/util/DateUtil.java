@@ -37,4 +37,9 @@ public class DateUtil {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(localDateString, fmt);
     }
+
+    public static LocalDateTime getLocalDateTime(String localDateTimeString) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(localDateTimeString, fmt);
+    }
 }
